@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import InputTodo from './InputTodo';
 import TodosList from './TodosList';
-import { v4 as uuidv4 } from "uuid";
 
 const TodosLogic = () => {
   const [todos, setTodos] = useState([
@@ -22,43 +22,41 @@ const TodosLogic = () => {
     },
   ]);
   const handleChange = (id) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos((prevState) => prevState.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
   const delTodo = (id) => {
     setTodos([
-      ...todos.filter((todo) => {
-        return todo.id !== id;
-      }),
+      ...todos.filter((todo) => todo.id !== id),
     ]);
   };
   const addTodoItem = (title) => {
     const newTodo = {
       id: 4,
-      title: title,
+      title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
   };
   return (
-    
+
     <div>
-    <InputTodo addTodoItem={addTodoItem} />
-    <InputTodo />
-    <TodosList todosProps={todos} handleChange={handleChange} 
-    delTodo={delTodo}
-    />
-     
-  </div>
-  )
-}
+      <InputTodo addTodoItem={addTodoItem} />
+      <InputTodo />
+      <TodosList
+        todosProps={todos}
+        handleChange={handleChange}
+        delTodo={delTodo}
+      />
+
+    </div>
+  );
+};
 export default TodosLogic;

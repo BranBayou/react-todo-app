@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 
 const InputTodo = ({ addTodoItem }) => {
@@ -20,14 +21,17 @@ const InputTodo = ({ addTodoItem }) => {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="form-container">
-      <input type="text" placeholder="Add Todo..."
-        value={title}
-        onChange={handleChange} 
-        className="input-text" />
-      <button className="input-submit">Submit</button>
-    </form>
-    <span className="submit-warning">{message}</span>
+      <form onSubmit={handleSubmit} className="form-container">
+        <input
+          type="text"
+          placeholder="Add Todo..."
+          value={title}
+          onChange={handleChange}
+          className="input-text"
+        />
+        <button type="button" className="input-submit">Submit</button>
+      </form>
+      <span className="submit-warning">{message}</span>
     </>
   );
 };
